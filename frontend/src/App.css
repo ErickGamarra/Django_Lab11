@@ -80,3 +80,33 @@
   border-color: #0f766e;
   color: #fff;
 }
+
+/* Semana 11: tarjetas con botón a la derecha */
+.fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.boton {
+  background: #0f766e;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.boton.secundario {
+  background: #fff;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+}

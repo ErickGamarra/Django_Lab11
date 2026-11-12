@@ -1,13 +1,13 @@
 import ProductoCard from './ProductoCard'
 
-// Recibe el arreglo de productos del padre y dibuja una tarjeta por cada uno.
-function Catalogo({ productos }) {
+// Recibe los productos y la función onAgregar; la pasa tal cual a cada tarjeta.
+function Catalogo({ productos, onAgregar }) {
   return (
     <section>
       <h2>Catálogo</h2>
       <ul className="lista">
         {productos.map((producto) => (
-          <ProductoCard key={producto.id} producto={producto} />
+          <ProductoCard key={producto.id} producto={producto} onAgregar={onAgregar} />
         ))}
       </ul>
     </section>
