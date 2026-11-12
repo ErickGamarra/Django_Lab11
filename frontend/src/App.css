@@ -49,3 +49,34 @@
   font-style: italic;
   color: #64748b;
 }
+
+/* Semana 11: menú superior para cambiar de pantalla */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: #0f172a;
+  font-family: system-ui, sans-serif;
+}
+
+.menu-marca {
+  color: #fff;
+  font-weight: 700;
+  margin-right: 16px;
+}
+
+.menu button {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.menu button.activo {
+  background: #0f766e;
+  border-color: #0f766e;
+  color: #fff;
+}
