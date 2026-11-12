@@ -27,12 +27,21 @@ function Practica() {
     }
   }
 
+  // El hijo avisa qué id quitar; el padre crea un arreglo nuevo sin esa línea.
+  const quitarDelCarrito = (id) => {
+    setCarrito(carrito.filter((linea) => linea.id !== id))
+  }
+
+  const vaciarCarrito = () => {
+    setCarrito([])
+  }
+
   return (
     <div className="contenedor">
       <h1 className="titulo">Cafetería — Práctica Semana 11</h1>
       <div className="dos-columnas">
         <Catalogo productos={productos} onAgregar={agregarAlCarrito} />
-        <Carrito lineas={carrito} />
+        <Carrito lineas={carrito} onQuitar={quitarDelCarrito} onVaciar={vaciarCarrito} />
       </div>
     </div>
   )
