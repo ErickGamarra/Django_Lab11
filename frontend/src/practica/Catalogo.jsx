@@ -5,6 +5,7 @@ function Catalogo({ productos, onAgregar }) {
   return (
     <section>
       <h2>Catálogo</h2>
+      {productos.length === 0 && <p className="vacio">No hay productos que coincidan</p>}
       <ul className="lista">
         {productos.map((producto) => (
           <ProductoCard key={producto.id} producto={producto} onAgregar={onAgregar} />

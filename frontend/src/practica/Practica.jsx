@@ -1,12 +1,19 @@
 import { useState } from 'react'
 import Catalogo from './Catalogo'
 import Carrito from './Carrito'
+import Buscador from './Buscador'
 import { productos } from './datos'
 
 // Componente padre de la práctica. El carrito vive aquí porque lo usan
 // dos hermanos: Catalogo (agrega) y Carrito (muestra).
 function Practica() {
   const [carrito, setCarrito] = useState([])
+  const [busqueda, setBusqueda] = useState('')
+
+  // Lista filtrada (dato derivado): no se guarda en otro estado.
+  const productosFiltrados = productos.filter((producto) =>
+    producto.nombre.toLowerCase().includes(busqueda.toLowerCase())
+  )
 
   const agregarAlCarrito = (producto) => {
     const existe = carrito.some((linea) => linea.id === producto.id)
@@ -40,7 +47,10 @@ function Practica() {
     <div className="contenedor">
       <h1 className="titulo">Cafetería — Práctica Semana 11</h1>
       <div className="dos-columnas">
-        <Catalogo productos={productos} onAgregar={agregarAlCarrito} />
+        <div>
+          <Buscador valor={busqueda} onCambiar={setBusqueda} />
+          <Catalogo productos={productosFiltrados} onAgregar={agregarAlCarrito} />
+        </div>
         <Carrito lineas={carrito} onQuitar={quitarDelCarrito} onVaciar={vaciarCarrito} />
       </div>
     </div>
