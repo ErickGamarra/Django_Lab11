@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ListadoMateriales from './ListadoMateriales'
+import FormularioMaterial from './FormularioMaterial'
 
 // Registros con la forma de GET /api/materiales/ (Semana 8): el precio
 // llega como texto y la categoría trae su id y su nombre.
@@ -30,9 +31,17 @@ function PanelMateriales() {
     setMateriales(materiales.filter((material) => material.id !== id))
   }
 
+  // Alta: el formulario envía el registro y el padre le asigna un id y lo
+  // agrega con un arreglo nuevo (spread), sin push.
+  const agregarMaterial = (nuevo) => {
+    const siguienteId = Math.max(0, ...materiales.map((m) => m.id)) + 1
+    setMateriales([...materiales, { id: siguienteId, ...nuevo }])
+  }
+
   return (
     <div className="contenedor panel">
       <h1 className="titulo">Panel de insumos textiles</h1>
+      <FormularioMaterial onGuardar={agregarMaterial} />
       <ListadoMateriales
         materiales={materiales}
         onReponer={reponerStock}

@@ -200,3 +200,51 @@
 .acciones .boton + .boton {
   margin-left: 6px;
 }
+
+.formulario {
+  display: grid;
+  grid-template-columns: 2fr 1.4fr 1fr 1fr 1fr auto;
+  gap: 10px;
+  align-items: end;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 16px 16px;
+  margin-bottom: 20px;
+}
+
+.formulario h2,
+.formulario .error {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.formulario h2 {
+  font-size: 1.1rem;
+}
+
+.formulario label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.formulario input,
+.formulario select {
+  padding: 7px 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 400;
+  min-width: 0;
+}
+
+.error {
+  background: #ffe4e6;
+  color: #be123c;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
