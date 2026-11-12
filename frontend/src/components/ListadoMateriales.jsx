@@ -15,6 +15,13 @@ function ListadoMateriales({ materiales, onReponer, onEliminar }) {
         </tr>
       </thead>
       <tbody>
+        {materiales.length === 0 && (
+          <tr>
+            <td colSpan="5" className="vacio">
+              No hay insumos que coincidan con la búsqueda
+            </td>
+          </tr>
+        )}
         {materiales.map((material) => (
           <FilaMaterial
             key={material.id}

@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import ListadoMateriales from './ListadoMateriales'
 import FormularioMaterial from './FormularioMaterial'
+import ResumenMateriales from './ResumenMateriales'
+import FiltroMateriales from './FiltroMateriales'
+import Notificacion from './Notificacion'
 
 // Registros con la forma de GET /api/materiales/ (Semana 8): el precio
 // llega como texto y la categoría trae su id y su nombre.
@@ -16,9 +19,32 @@ const materialesIniciales = [
 // Padre de la pantalla: el arreglo de materiales vive solo aquí.
 function PanelMateriales() {
   const [materiales, setMateriales] = useState(materialesIniciales)
+  const [texto, setTexto] = useState('')
+  const [categoria, setCategoria] = useState('')
+  const [mensaje, setMensaje] = useState(null)
+
+  const cerrarMensaje = useCallback(() => setMensaje(null), [])
+  const avisar = (contenido) => setMensaje({ texto: contenido, hora: Date.now() })
+
+  // Lista que se muestra: se calcula a partir del estado, no se guarda aparte.
+  const visibles = materiales.filter(
+    (m) =>
+      m.nombre.toLowerCase().includes(texto.toLowerCase()) &&
+      (categoria === '' || m.categoria_nombre === categoria)
+  )
+
+  // El título de la pestaña muestra cuántos insumos hay registrados.
+  useEffect(() => {
+    document.title = `Panel de insumos (${materiales.length}) — UrbanTrend`
+    return () => {
+      document.title = 'UrbanTrend'
+    }
+  }, [materiales.length])
 
   // Reponer: map() devuelve un arreglo nuevo con el stock de ese material + 10.
   const reponerStock = (id) => {
+    const material = materiales.find((m) => m.id === id)
+    avisar(`Se repusieron 10 ${material.unidad_medida.toLowerCase()} de ${material.nombre}`)
     setMateriales(
       materiales.map((material) =>
         material.id === id ? { ...material, stock: material.stock + 10 } : material
@@ -28,6 +54,8 @@ function PanelMateriales() {
 
   // Eliminar: filter() devuelve un arreglo nuevo sin ese material.
   const eliminarMaterial = (id) => {
+    const material = materiales.find((m) => m.id === id)
+    avisar(`Se eliminó ${material.nombre}`)
     setMateriales(materiales.filter((material) => material.id !== id))
   }
 
@@ -36,17 +64,26 @@ function PanelMateriales() {
   const agregarMaterial = (nuevo) => {
     const siguienteId = Math.max(0, ...materiales.map((m) => m.id)) + 1
     setMateriales([...materiales, { id: siguienteId, ...nuevo }])
+    avisar(`Se registró ${nuevo.nombre}`)
   }
 
   return (
     <div className="contenedor panel">
       <h1 className="titulo">Panel de insumos textiles</h1>
+      <ResumenMateriales materiales={materiales} />
       <FormularioMaterial onGuardar={agregarMaterial} />
+      <FiltroMateriales
+        texto={texto}
+        categoria={categoria}
+        onCambiarTexto={setTexto}
+        onCambiarCategoria={setCategoria}
+      />
       <ListadoMateriales
-        materiales={materiales}
+        materiales={visibles}
         onReponer={reponerStock}
         onEliminar={eliminarMaterial}
       />
+      <Notificacion mensaje={mensaje} onCerrar={cerrarMensaje} />
     </div>
   )
 }

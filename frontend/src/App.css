@@ -248,3 +248,51 @@
   border-radius: 6px;
   font-size: 0.9rem;
 }
+
+.resumen-panel {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.resumen-panel div {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid #0f766e;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: grid;
+  gap: 2px;
+}
+
+.resumen-panel span {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.resumen-panel strong {
+  font-size: 1.25rem;
+}
+
+.alerta-texto {
+  color: #be123c;
+}
+
+.filtro {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.filtro input,
+.filtro select {
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.filtro input {
+  flex: 1;
+}
