@@ -132,3 +132,10 @@
 .carrito .tarjeta {
   background: #fff;
 }
+
+.resumen {
+  border-top: 1px dashed #94a3b8;
+  padding-top: 10px;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
