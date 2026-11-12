@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Catalogo from './Catalogo'
 import Carrito from './Carrito'
 import Buscador from './Buscador'
+import Aviso from './Aviso'
 import { productos } from './datos'
 
 // Componente padre de la práctica. El carrito vive aquí porque lo usan
@@ -9,6 +10,11 @@ import { productos } from './datos'
 function Practica() {
   const [carrito, setCarrito] = useState([])
   const [busqueda, setBusqueda] = useState('')
+  const [aviso, setAviso] = useState(null)
+
+  // useCallback mantiene la misma función entre renders; así el efecto de
+  // Aviso no se reinicia cada vez que Practica se vuelve a dibujar.
+  const cerrarAviso = useCallback(() => setAviso(null), [])
 
   // Lista filtrada (dato derivado): no se guarda en otro estado.
   const productosFiltrados = productos.filter((producto) =>
@@ -16,6 +22,9 @@ function Practica() {
   )
 
   const agregarAlCarrito = (producto) => {
+    // Un objeto nuevo en cada clic: el aviso se reinicia aunque sea el mismo producto.
+    setAviso({ nombre: producto.nombre, hora: Date.now() })
+
     const existe = carrito.some((linea) => linea.id === producto.id)
 
     if (existe) {
@@ -46,6 +55,7 @@ function Practica() {
   return (
     <div className="contenedor">
       <h1 className="titulo">Cafetería — Práctica Semana 11</h1>
+      <Aviso aviso={aviso} onCerrar={cerrarAviso} />
       <div className="dos-columnas">
         <div>
           <Buscador valor={busqueda} onCambiar={setBusqueda} />

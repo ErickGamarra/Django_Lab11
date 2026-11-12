@@ -149,3 +149,15 @@
   border-radius: 6px;
   font-size: 0.95rem;
 }
+
+.aviso {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  background: #0f766e;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgb(15 23 42 / 0.2);
+  font-weight: 600;
+}
