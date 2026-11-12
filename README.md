@@ -1,8 +1,8 @@
 # Laboratorio 11 — Comunicación entre componentes en React
 
-**Curso:** Desarrollo de Aplicaciones Empresariales — Tecsup, 2026-II
-**Alumno:** Erick Arturo Gamarra Mundaca
-**Repositorio:** https://github.com/ErickGamarra/Django_Lab11
+- **Curso:** Desarrollo de Aplicaciones Empresariales — Tecsup, 2026-II
+- **Alumno:** Erick Arturo Gamarra Mundaca
+- **Repositorio:** https://github.com/ErickGamarra/Django_Lab11
 
 Este laboratorio parte del proyecto del Laboratorio 10 (UrbanTrend: tienda de
 ropa + módulo de logística textil, con backend en Django y frontend en React +
