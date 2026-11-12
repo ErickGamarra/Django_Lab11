@@ -1,17 +1,39 @@
+import { useState } from 'react'
 import Catalogo from './Catalogo'
+import Carrito from './Carrito'
 import { productos } from './datos'
 
-// Componente padre de la práctica: tiene los datos y los entrega por props.
+// Componente padre de la práctica. El carrito vive aquí porque lo usan
+// dos hermanos: Catalogo (agrega) y Carrito (muestra).
 function Practica() {
-  // Por ahora solo comprobamos que el aviso del hijo llega al padre.
+  const [carrito, setCarrito] = useState([])
+
   const agregarAlCarrito = (producto) => {
-    console.log('Agregar al carrito:', producto.nombre)
+    const existe = carrito.some((linea) => linea.id === producto.id)
+
+    if (existe) {
+      // Ya está: se suma 1 a esa línea y se devuelve un arreglo nuevo.
+      setCarrito(
+        carrito.map((linea) =>
+          linea.id === producto.id ? { ...linea, cantidad: linea.cantidad + 1 } : linea
+        )
+      )
+    } else {
+      // No está: se copia el arreglo y se agrega la línea al final (sin push).
+      setCarrito([
+        ...carrito,
+        { id: producto.id, nombre: producto.nombre, precio: producto.precio, cantidad: 1 },
+      ])
+    }
   }
 
   return (
     <div className="contenedor">
       <h1 className="titulo">Cafetería — Práctica Semana 11</h1>
-      <Catalogo productos={productos} onAgregar={agregarAlCarrito} />
+      <div className="dos-columnas">
+        <Catalogo productos={productos} onAgregar={agregarAlCarrito} />
+        <Carrito lineas={carrito} />
+      </div>
     </div>
   )
 }

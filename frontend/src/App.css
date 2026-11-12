@@ -110,3 +110,25 @@
   color: #be123c;
   border: 1px solid #fecdd3;
 }
+
+/* Semana 11: catálogo y carrito lado a lado */
+.contenedor:has(.dos-columnas) {
+  max-width: 1040px;
+}
+
+.dos-columnas {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.carrito {
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 4px 16px 16px;
+}
+
+.carrito .tarjeta {
+  background: #fff;
+}
