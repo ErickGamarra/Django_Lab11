@@ -190,3 +190,13 @@
 .tabla tbody tr:hover {
   background: #f8fafc;
 }
+
+.tabla th:last-child,
+.acciones {
+  white-space: nowrap;
+  text-align: right;
+}
+
+.acciones .boton + .boton {
+  margin-left: 6px;
+}

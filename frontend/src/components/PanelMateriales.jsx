@@ -14,12 +14,30 @@ const materialesIniciales = [
 
 // Padre de la pantalla: el arreglo de materiales vive solo aquí.
 function PanelMateriales() {
-  const [materiales] = useState(materialesIniciales)
+  const [materiales, setMateriales] = useState(materialesIniciales)
+
+  // Reponer: map() devuelve un arreglo nuevo con el stock de ese material + 10.
+  const reponerStock = (id) => {
+    setMateriales(
+      materiales.map((material) =>
+        material.id === id ? { ...material, stock: material.stock + 10 } : material
+      )
+    )
+  }
+
+  // Eliminar: filter() devuelve un arreglo nuevo sin ese material.
+  const eliminarMaterial = (id) => {
+    setMateriales(materiales.filter((material) => material.id !== id))
+  }
 
   return (
     <div className="contenedor panel">
       <h1 className="titulo">Panel de insumos textiles</h1>
-      <ListadoMateriales materiales={materiales} />
+      <ListadoMateriales
+        materiales={materiales}
+        onReponer={reponerStock}
+        onEliminar={eliminarMaterial}
+      />
     </div>
   )
 }
