@@ -2,10 +2,12 @@ import { useState } from 'react'
 import './App.css'
 import Practica from './practica/Practica'
 import Lab10 from './Lab10'
+import PanelMateriales from './components/PanelMateriales'
 
-// Menú simple para cambiar entre la práctica de la Semana 11 y lo hecho en el Lab 10.
+// Menú simple para cambiar entre la práctica, el panel de insumos y el Lab 10.
 const vistas = [
   { id: 'practica', texto: 'Parte 1 · Práctica' },
+  { id: 'panel', texto: 'Parte 2 · Panel de insumos' },
   { id: 'lab10', texto: 'Laboratorio 10' },
 ]
 
@@ -28,6 +30,7 @@ function App() {
         ))}
       </nav>
       {vista === 'practica' && <Practica />}
+      {vista === 'panel' && <PanelMateriales />}
       {vista === 'lab10' && <Lab10 />}
     </>
   )

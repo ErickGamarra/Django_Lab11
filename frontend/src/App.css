@@ -161,3 +161,32 @@
   box-shadow: 0 6px 18px rgb(15 23 42 / 0.2);
   font-weight: 600;
 }
+
+/* Semana 11 — Parte 2: panel de insumos */
+.contenedor.panel {
+  max-width: 1040px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.tabla th {
+  text-align: left;
+  background: #0f172a;
+  color: #fff;
+  padding: 8px 10px;
+  font-weight: 600;
+}
+
+.tabla td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.tabla tbody tr:hover {
+  background: #f8fafc;
+}
